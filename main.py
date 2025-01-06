@@ -118,6 +118,7 @@ def login():
         session["password"] = form.password.data
         session["city"] = form.city.data
 
+
         if if_exists:
             with app.app_context():
                 user = User.query.filter_by(username = session.get('username')).first()

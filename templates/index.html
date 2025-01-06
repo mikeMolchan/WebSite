@@ -1,6 +1,38 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+  <!-- CSS for animations -->
+  <style>
+    .certificate-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+  
+    .certificate-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+  
+    /* Анимации появления блоков */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-out;
+    }
+  
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+    #connect a {
+      transition: all 0.3s;
+    }
+  
+    #connect a:hover {
+      transform: scale(1.05); /* Лёгкое увеличение при наведении */
+    }
+  </style>
+
 <!-- Hero Section -->
 {% if login %}
   <div class="alert alert-success" role="alert">
@@ -32,7 +64,6 @@
   </div>
 </section>
 
-<hr>
 
 <!-- Education & Certifications Section -->
 <section id="education" class="py-5 fade-in">
@@ -67,7 +98,7 @@
         </div>
       </div>
       <!-- Certification 2 -->
-      <div class="col-md-6 mb-4">
+      <div class="col-md-6">
         <div class="card shadow-sm certificate-card">
           <div class="card-body">
             <h5 class="card-title">AWS Cloud Practitioner</h5>
@@ -79,30 +110,24 @@
   </div>
 </section>
 
-<!-- CSS for animations -->
-<style>
-  .certificate-card {
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
+<!-- Connect With Me Section -->
+<section id="connect" class="py-5 text-center fade-in mb-5">
+  <div class="container">
+    <h3 class="mb-4">Or you can check out my LinkedIn and GitHub accounts</h3>
+    <div class="d-flex justify-content-center gap-3 mt-4">
+      <!-- LinkedIn Link -->
+      <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile" target="_blank" class="btn btn-primary btn-lg">
+        <i class="bi bi-linkedin"></i> LinkedIn
+      </a>
+      <!-- GitHub Link -->
+      <a href="https://github.com/mikeMolchan" target="_blank" class="btn btn-dark btn-lg">
+        <i class="bi bi-github"></i> GitHub
+      </a>
+    </div>
+  </div>
+</section>
 
-  .certificate-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  /* Анимации появления блоков */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease-out;
-  }
-
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
-
+<hr>
 
 <!-- Skills Section -->
 <section id="skills" class="py-5 bg-light fade-in">
