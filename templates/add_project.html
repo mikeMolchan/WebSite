@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+    <div class="card my-3">
+        <div class="card-body">
+          Add your own project!
+        </div>
+      </div>
+    <form class="row g-3 needs-validation" novalidate action="{{ url_for('add_project') }}" method="POST">
+        {{ form.csrf_token }}
+        <div class="col-md-6">
+            <!-- <label for="validationCustom01" class="form-label">First name</label> -->
+            <!-- <input type="text" class="form-control" id="validationCustom01" value="Mark" required> -->
+            {{ form.title.label( for="validationCustom01", class="form-label") }} {{ form.title(class="form-control", id="validationCustom01", value="Web Page built on Flask", type="text") }}
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-6">
+          <!-- <label for="validationCustom02" class="form-label">Last name</label>
+          <input type="text" class="form-control" id="validationCustom02" value="Otto" required> -->
+          {{ form.description.label( for="validationCustom02", class="form-label") }} {{ form.description(class="form-control", id="validationCustom02", value="This is my brand new project!", type="text") }}
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-6">
+          <!-- <label for="validationCustomUsername" class="form-label">Username</label> -->
+          {{ form.topic.label( for="validationCustomUsername", class="form-label") }}
+          <div class="input-group has-validation">
+            <!-- <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required> -->
+            {{ form.topic(class="form-control", id="validationCustomUsername",  value="Web Development", type="text") }}
+            <div class="invalid-feedback">
+              Please choose a username.
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+        {% if message %}
+        <h2>{{ message }}</h2>
+        {% endif %}
+    </form>
+{% endblock %}

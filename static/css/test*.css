@@ -1,0 +1,35 @@
+/* main {
+    width: 100vw;
+    height: 1500px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+
+}
+
+div.projects-block {
+    width: 80%;
+    height: 900px;  
+    background-color: #191827;  
+    border-radius: 10px;
+    margin-top: 100px;
+    padding: 20px;
+}
+
+.list-group {
+    float: right;
+}
+
+div#project {
+    float: left;
+    height: 80%;
+    width: 75%;
+}
+
+main > div, main > li, main > div.card {
+    border: 1px solid #5b53ff;
+}
+
+a.btn:hover ~ main {
+    background-color: white;  
+} */

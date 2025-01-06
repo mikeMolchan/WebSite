@@ -1,0 +1,9 @@
+__pycache__
+waste
+venv
+test.py
+xlsx
+.DS_Store
+*.pyc
+csv
+secrets.txt

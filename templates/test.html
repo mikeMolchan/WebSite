@@ -1,0 +1,138 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<!-- Встроенные стили -->
+<style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    .header-section {
+      background: linear-gradient(135deg, #6c63ff, #8a85ff);
+      padding: 60px 0;
+      text-align: center;
+      color: #fff;
+    }
+
+    /* Кнопки проектов */
+    .project-buttons button {
+      margin: 5px;
+      padding: 10px 20px;
+      border-radius: 20px;
+      border: 1px solid #666;
+      background: transparent;
+      color: #333;
+      transition: all 0.3s;
+    }
+
+    .project-buttons button:hover,
+    .project-buttons button.active {
+      background-color: #6c63ff;
+      color: #fff;
+    }
+
+    /* Карточки проектов */
+    .project-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .project-card h5 {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .project-card p {
+      color: #555;
+    }
+  </style>
+
+  <!-- Хэдер -->
+  <section class="header-section">
+    <div class="container">
+      <h1>Projects</h1>
+      <p>Explore our work and see how we help businesses grow with strategic solutions.</p>
+    </div>
+  </section>
+
+  <!-- Кнопки проектов -->
+  <div class="text-center project-buttons my-4">
+    <button class="filter-btn active" data-category="all">All Projects</button>
+    <button class="filter-btn" data-category="project-1">Project 1</button>
+    <button class="filter-btn" data-category="project-2">Project 2</button>
+    <button class="filter-btn" data-category="project-3">Project 3</button>
+  </div>
+
+  <!-- Секция проектов -->
+  <section id="portfolio" class="py-5">
+    <div class="container">
+      <div class="row g-4" id="project-container">
+        <!-- Проект 1 -->
+        <div class="col-md-4 project-card" data-category="project-1">
+          <img src="static/images/project1.jpg" alt="Project 1">
+          <h5>Project One</h5>
+          <p>AI-powered analytics platform that optimizes decision-making processes in enterprises.</p>
+        </div>
+        <!-- Проект 2 -->
+        <div class="col-md-4 project-card" data-category="project-2">
+          <img src="static/images/project2.jpg" alt="Project 2">
+          <h5>Project Two</h5>
+          <p>Marketing automation tool designed to increase customer engagement through tailored campaigns.</p>
+        </div>
+        <!-- Проект 3 -->
+        <div class="col-md-4 project-card" data-category="project-3">
+          <img src="static/images/project3.jpg" alt="Project 3">
+          <h5>Project Three</h5>
+          <p>A mobile-first web application focused on enhancing user experience with responsive design.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Фильтрация проектов -->
+  <script>
+    const buttons = document.querySelectorAll('.filter-btn');
+    const projects = document.querySelectorAll('.project-card');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const category = button.getAttribute('data-category');
+
+        // Удаляем активный класс у всех кнопок
+        buttons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Фильтруем проекты
+        projects.forEach(project => {
+          const projectCategory = project.getAttribute('data-category');
+          if (category === 'all' || category === projectCategory) {
+            project.style.display = 'block';
+          } else {
+            project.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+

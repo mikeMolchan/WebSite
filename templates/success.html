@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+<!-- {% block add_css %} <link rel="stylesheet" href="../static/css/login.css"> {% endblock %} -->
+
+{% block content %}
+    {% if if_exists %}
+        <div class="alert alert-success" role="alert">
+            Welcome back, @{{ username }}!
+        </div>
+    {% else %}
+        <div class="alert alert-success" role="alert">
+            Your account has been successfully created, @{{ username }}!
+        </div>
+    {% endif %}
+{% endblock %}

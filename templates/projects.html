@@ -1,0 +1,142 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<!-- Встроенные стили -->
+<style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    .header-section {
+      background: #3b82f6; /* Синий цвет */
+      padding: 60px 0;
+      text-align: center;
+      color: #fff;
+    }
+
+    /* Кнопки фильтров */
+    .filter-buttons button {
+      margin: 5px;
+      padding: 10px 20px;
+      border-radius: 20px;
+      border: 1px solid #3b82f6;
+      background: transparent;
+      color: #3b82f6;
+      transition: all 0.3s;
+    }
+
+    .filter-buttons button:hover,
+    .filter-buttons button.active {
+      background-color: #3b82f6;
+      color: #fff;
+    }
+
+    /* Анимация для карточек проектов */
+    .project-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-radius: 20px; /* Закруглённые углы */
+      background-color: #fff;
+      padding: 30px; /* Увеличенный паддинг */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .project-title {
+      font-size: 20px;
+      font-weight: 500; /* Менее жирный текст */
+      transition: color 0.3s;
+    }
+
+    .project-card:hover .project-title {
+      color: #1e40af; /* Темно-синий цвет заголовка при наведении */
+    }
+
+    .project-description {
+      font-size: 16px;
+      color: #555; /* Более мягкий цвет текста */
+    }
+
+    /* Скрытие проектов */
+    .hidden {
+      display: none;
+    }
+</style>
+
+<!-- Хэдер -->
+<section class="header-section">
+  <div class="container">
+    <h1>Projects</h1>
+    <p>Explore my best projects with GitHub repositories included!</p>
+  </div>
+</section>
+
+<!-- Панель фильтров -->
+<div class="text-center filter-buttons my-4">
+  <button class="filter-btn active" data-filter="all">All Projects</button>
+  <button class="filter-btn" data-filter="project1">Web Development</button>
+  <button class="filter-btn" data-filter="project2">Data Science</button>
+  <button class="filter-btn" data-filter="project3">Artificial Intelligence</button>
+  <button class="filter-btn" data-filter="project4">IOS Development</button>
+</div>
+
+<!-- My Projects Section -->
+<section id="projects" class="py-5">
+  <div class="container">
+    <div class="row g-4">
+      <!-- Project 1 -->
+      <div class="col-md-12 project-card" data-category="project1">
+        <h4 class="project-title text-primary">Website built on Flask</h4>
+        <p class="project-description">AI-powered analytics platform designed to streamline enterprise decision-making processes through data-driven insights and automation tools. It helps businesses analyze trends, forecast outcomes, and improve performance using advanced machine learning algorithms.</p>
+      </div>
+      <!-- Project 2 -->
+      <div class="col-md-12 project-card" data-category="project2">
+        <h4 class="project-title text-primary">Data analysis of 8000+ users table with Pandas and NumPy</h4>
+        <p class="project-description">Marketing automation platform that leverages AI to personalize campaigns, improve customer retention, and boost sales. This tool integrates with CRM systems, social media platforms, and email marketing services to provide seamless automation and analytics.</p>
+      </div>
+      <!-- Project 3 -->
+      <div class="col-md-12 project-card" data-category="project3">
+        <h4 class="project-title text-primary">AI model pretrained on large amounts of data built on PyTorch and SeaBorn</h4>
+        <p class="project-description">A mobile-first web application designed to deliver a seamless and responsive user experience. It is optimized for performance across all devices, ensuring smooth navigation, faster load times, and interactive design elements to increase user engagement.</p>
+      </div>
+      <!-- Project 4 -->
+      <div class="col-md-12 project-card" data-category="project4">
+        <h4 class="project-title text-primary">Mobile application for IOS made on XCode</h4>
+        <p class="project-description">A mobile-first web application designed to deliver a seamless and responsive user experience. It is optimized for performance across all devices, ensuring smooth navigation, faster load times, and interactive design elements to increase user engagement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Скрипт фильтрации -->
+<script>
+  const buttons = document.querySelectorAll('.filter-btn');
+  const projects = document.querySelectorAll('.project-card');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const filter = button.getAttribute('data-filter');
+
+      // Удаляем активный класс у всех кнопок
+      buttons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      // Фильтруем проекты
+      projects.forEach(project => {
+        const category = project.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+          project.classList.remove('hidden'); // Показываем проект
+        } else {
+          project.classList.add('hidden'); // Скрываем проект
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}
+

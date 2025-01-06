@@ -1,0 +1,93 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg p-4">
+        {% if if_exists %}
+        <h3 class="text-center mb-4">Log in into your account</h3>
+        {% else %}
+        <h3 class="text-center mb-4">Create your account</h3>
+        {% endif %}
+
+
+        {% if if_exists %}
+        <form action="/login?exists=True" method="POST">
+        {% else %}
+        <form action="/login" method="POST">
+        {% endif %}
+          {{ form.csrf_token }}
+          <!-- Username -->
+          <div class="mb-3">
+            <!-- <label for="username" class="form-label">Username</label> -->
+            {{ form.username.label(for="username", class="form-label") }}
+            {{ form.username(type="text", class="form-control", id="username", placeholder="Enter your username") }}
+            <!-- <input
+              type="text"
+              class="form-control"
+              id="username"
+              placeholder="Enter your username"
+              required
+            /> -->
+          </div>
+
+          <!-- Password -->
+          <div class="mb-3">
+            {{ form.password.label(for="password", class="form-label") }}
+            {{ form.password(type="password", class="form-control", id="password", placeholder="Enter your password") }}
+            <!-- <label for="password" class="form-label">Password</label> -->
+            <!-- <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Enter your password"
+              required
+            /> -->
+          </div>
+
+          <!-- City -->
+           {% if not if_exists %}
+           <div class="mb-3">
+             {{ form.city.label(for="city", class="form-label") }}
+             {{ form.city(type="text", class="form-control", id="city", placeholder="Enter your city") }}
+            {% endif %}
+            <!-- <label for="city" class="form-label">City</label>
+            <input
+              type="text"
+              class="form-control"
+              id="city"
+              placeholder="Enter your city"
+            />
+          </div> -->
+
+          <!-- Submit Button -->
+          <div class="d-grid gap-2">
+            {{ form.submit(type="submit", class="btn btn-primary my-3") }}
+            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+          </div>
+        </form>
+        {% if password_not_match %}
+            <div class="alert alert-danger my-3" role="alert">
+                Passwords don't match
+            </div>
+        {% endif %}
+
+        {% if no_username %}
+            <div class="alert alert-danger my-3" role="alert">
+                No user with such username
+            </div>
+        {% endif %}
+
+        {% if not if_exists %}
+        <div class="text-center mt-3">
+          <p>Already have an account? 
+            <a href="/login?exists=True" class="text-primary">Log in</a>
+          </p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>  
+{% endblock %}
